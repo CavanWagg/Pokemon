@@ -1,4 +1,4 @@
-INSERT INTO pokemon (pokemon_name, captured) VALUES ("Starmie");
-INSERT INTO pokemon (pokemon_name, captured) VALUES ("Tangela");
-INSERT INTO pokemon (pokemon_name, captured) VALUES ("Machamp");
-INSERT INTO pokemon (pokemon_name, captured) VALUES ("Gengar");
+INSERT INTO pokemon (pokemon_name) VALUES ("Starmie");
+INSERT INTO pokemon (pokemon_name) VALUES ("Tangela");
+INSERT INTO pokemon (pokemon_name) VALUES ("Machamp");
+INSERT INTO pokemon (pokemon_name) VALUES ("Gengar");

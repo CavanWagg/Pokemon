@@ -1,16 +1,22 @@
-var orm = require('orm');
+var orm = require("../config/orm.js");
 
 
 var pokemon = {
   all: function(cb) {
-    orm.selectAll("pokemon", function( res) {
-      cb(res)
+    orm.all("pokemon", function(res) {
+      cb(res);
     })
-  }
-}
+  },
+  // create: function(cols, vals, cb) {
+  //   orm.insertOne("pokemon", cols, vals, function(res) {
+  //     cb(res);
+  //   });
+  // },
+
+};
 
 
-module.exports = pokemon
+module.exports = pokemon;
 
 // get all the pokemon 
 
