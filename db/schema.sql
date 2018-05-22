@@ -5,6 +5,6 @@ USE pokemon_db;
 CREATE TABLE pokemon (
   id int AUTO_INCREMENT,
   pokemon_name varchar(30) NOT NULL,
-  captured BOOLEAN NOT NULL,
+  captured BOOLEAN DEFAULT false,
   PRIMARY KEY(id)
 );

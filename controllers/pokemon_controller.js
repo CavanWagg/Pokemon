@@ -8,39 +8,29 @@ router.get("/", function(req, res) {
     var hbsObject = {
       poke_data: pokeData
     }
-    console.log(hbsObject);
+    // console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
 
-router.post("/pokemon", function(req, res) {
-  pokemon.create([
-    'pokemon_name'
-  ], [
-    req.body.pokemon_name
-  ], function(data) {
+router.post("/pokemon/create", function(req, res) {
+  console.log('test', req.body);
+  pokemon.create(['pokemon_name'], [req.body.pokemon_name], function(result) {
+
+   console.log('hello', result);
+   
     res.redirect('/');
   });
 });
 
-router.put("/api/cats/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
+router.put('/pokemon/create/:id', function(req, res) {
+  var condition = 'id = ' + req.params.id;
 
-  console.log("condition", condition);
-
-  pokemon.update(
-    {
-      captured: req.body.captured
-    },
-    condition,
-    function(result) {
-      if (result.changedRows === 0) {
-        // if no rows were changed, then ID does not exist
-        return res.status(404).end();
-      }
-      res.status(200).end();
-    }
-  );
+  pokemon.update({
+    captured: true
+  }, condition, function(data) {
+    res.redirect('/');
+  });
 });
 
 module.exports = router;

@@ -16,25 +16,13 @@ function printQuestionMarks(num) {
 
 // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
-  var arr = [];
+	var arr = [];
 
-  // loop through keys, push key/value pair as a string int arr
-  for (var key in ob) {
-    var value = ob[key];
-    // check to skip hidden properties
-    if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Mr. Mime => 'Mr. Mime')
-      if (typeof value === "string" && value.indexOf(" ") >= 0) {
-        value = "'" + value + "'";
-      }
-       // e.g. {name: 'Mr. Mime'} => ["name='Mr. Mime'"]
-      // e.g. {captured: true} => ["captured=true"]
-      arr.push(key + "=" + value);
-    }
-  }
+	for (var key in ob) {
+		arr.push(key + "=" + ob[key]);
+	}
 
-  // translate array of strings to a single comma-separated string
-  return arr.toString();
+	return arr.toString();
 }
 
 
@@ -49,9 +37,17 @@ all: function(tableInput, cb) {
     // console.log(result);
   });
 },
-create: function(table, cols, vals, cb){
-  var queryString = `INSERT INTO ${table} (${cols.toString()})  VALUES (${printQuestionMarks(vals.length)})`;
-  console.log(queryString);
+create: function(table, cols, vals, cb) {
+  var queryString = "INSERT INTO " + table;
+
+  queryString += " (";
+  queryString += cols.toString();
+  queryString += ") ";
+  queryString += "VALUES (";
+  queryString += printQuestionMarks(vals.length);
+  queryString += ") ";
+  console.log('queryTest', queryString);
+  console.log('columns', cols);
   connection.query(queryString, vals, function(err, result) {
     if (err) {
       throw err;

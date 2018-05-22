@@ -3,11 +3,14 @@
 <h2>Wild Pokemon!</h2>
 
 <ul>
-  {{#each pokemon}} {{#unless this.captured}}
+  {{#each poke_data}} {{#unless this.captured}}
   <div>
-    <form action="/pokemon/{{this.id}}?_method=PUT" method="POST">
+    <form action="/pokemon/create" method="POST">
       <button type="submit" class='pokemonAvailable'> {{this.pokemon_name}}</button>
     </form>
+    {{!-- <form action="/pokemon/{{this.id}}?_method=PUT" method="POST">
+      <button type="submit" class='pokemonAvailable'> {{this.pokemon_name}}</button>
+    </form> --}}
   </div>
 
   {{/unless}} {{/each}}
@@ -16,15 +19,15 @@
 <h2>Pokemon that are captured!</h2>
 
 <ul>
-  {{#each pokemon}} {{#if this.captured}} {{pokemon}} {{/if}} {{/each}}
+  {{#each poke_data}} {{#if this.captured}} {{poke_data}} {{/if}} {{/each}}
 </ul>
 
 <h2>Add a Pokemon</h2>
-<form class="create-form">
+<form class="create-form" action="/pokemon/create" method="POST">
 
   <div class="form-group">
     <label for="poke-label">Pokemon Name:</label>
-    <input type="text" id="poke-input" name="name">
+    <input type="text" id="poke-input" name="pokemon_name" placeholder="Pokemon">
   </div>
 
   <div class="form-group">
@@ -35,5 +38,5 @@
     <input type="radio" name="captured" value="0"> Wild!
   </div>
 
-  <button type="submit">Add Pokemon</button>
+  <button class="change-capture" type="submit">Add Pokemon</button>
 </form>
